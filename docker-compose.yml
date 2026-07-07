@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:18-bookworm
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: greenlight
+      POSTGRES_PASSWORD: pa55word
+      POSTGRES_DB: greenlight
+    ports:
+      - "5433:5432"
+    volumes:
+      - green_light_data:/var/lib/postgresql/18/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+
+volumes:
+  green_light_data:
+
+

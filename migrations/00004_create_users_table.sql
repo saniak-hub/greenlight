@@ -1,0 +1,13 @@
+-- +goose Up
+CREATE TABLE IF NOT EXISTS users (
+    id BIGSERIAL PRIMARY KEY,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    name TEXT NOT NULL,
+    email CITEXT NOT NULL UNIQUE,
+    password_hash BYTEA NOT NULL,
+    activated BOOL NOT NULL DEFAULT FALSE,
+    version INT NOT NULL DEFAULT 1
+);
+
+-- +goose Down
+DROP TABLE IF EXISTS users;
