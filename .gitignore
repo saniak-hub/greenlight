@@ -6,6 +6,8 @@ test*
 
 .vscode/
 
+# binary files
+bin/
 *.exe
 *.exe~
 *.dll
@@ -21,3 +23,6 @@ profile.cov
 
 go.work
 go.work.sum
+.envrc
+
+vendor/
