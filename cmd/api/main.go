@@ -16,9 +16,10 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/saniak-hub/greenlight/internal/data"
 	"github.com/saniak-hub/greenlight/internal/mailer"
+	"github.com/saniak-hub/greenlight/internal/vcs"
 )
 
-const version = "1.0.0"
+var version = vcs.Version()
 
 type config struct {
 	port int
@@ -56,7 +57,7 @@ func main() {
 
 	flag.IntVar(&cfg.port, "port", 4000, "API server port")
 	flag.StringVar(&cfg.env, "env", "development", "Environment (development|staging|production)")
-	flag.StringVar(&cfg.db.dsn, "db-dsn", "", "Postgres DSN")
+	flag.StringVar(&cfg.db.dsn, "db-dsn", os.GetEnv("GREENLIGHT_DB_DSN"), "Postgres DSN")
 
 	// cli flags to read limiter values
 	flag.Float64Var(&cfg.limiter.rps, "limiter-rps", 2, "Rate limiter max request per second")
