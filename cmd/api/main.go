@@ -57,7 +57,7 @@ func main() {
 
 	flag.IntVar(&cfg.port, "port", 4000, "API server port")
 	flag.StringVar(&cfg.env, "env", "development", "Environment (development|staging|production)")
-	flag.StringVar(&cfg.db.dsn, "db-dsn", os.GetEnv("GREENLIGHT_DB_DSN"), "Postgres DSN")
+	flag.StringVar(&cfg.db.dsn, "db-dsn", os.Getenv("GREENLIGHT_DB_DSN"), "Postgres DSN")
 
 	// cli flags to read limiter values
 	flag.Float64Var(&cfg.limiter.rps, "limiter-rps", 2, "Rate limiter max request per second")
